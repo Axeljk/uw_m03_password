@@ -16,6 +16,18 @@
         <div class="card-header">
           <h2>Generate a Password</h2>
         </div>
+		<form>
+			<label for="length">How long would you like the password? </label>
+			<input type="number" id="length" name="length" value="8" min="8" max="128" pattern="[0-9]*" required>
+			<label for="special">Should it include special characters?</label>
+			<input type="checkbox" id="special" name="special" required>
+			<label for="numbers">Should it include numbers?</label>
+			<input type="checkbox" id="numbers" name="numbers" required>
+			<label for="uppercase">Should it include capital letters?</label>
+			<input type="checkbox" id="uppercase" name="uppercase" required>
+			<label for="lowercase">Should it include lowercase characters?</label>
+			<input type="checkbox" id="lowercase" name="lowercase" required>
+		</form>
         <div class="card-body">
           <textarea
             readonly
@@ -25,7 +37,7 @@
           ></textarea>
         </div>
         <div class="card-footer">
-          <button id="generate" class="btn">Generate Password</button>
+          <button id="generate" class="btn">Specify Password</button>
         </div>
       </div>
     </div>

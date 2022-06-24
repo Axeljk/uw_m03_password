@@ -50,6 +50,32 @@ header {
   height: 2px;
 }
 
+form {
+	padding: 0;
+	opacity: 0.0;
+	height: 0px;
+	transition: height 0.8s, opacity 1s 0.6s;
+	display: grid;
+	grid-gap: 1em 4em;
+	grid-template-columns: 70% 20%;
+}
+form > div {
+	display: none;
+}
+label {
+	text-align: right;
+	padding: 0 2em;
+}
+input {
+	margin: 1em 0;
+	text-align: right;
+	height: 2em;
+	width: 4em;
+}
+input:invalid {
+	background-color: #f00;
+}
+
 .card-body {
   min-height: 100px;
 }

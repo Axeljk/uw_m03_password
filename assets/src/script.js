@@ -1,4 +1,4 @@
-// Assignment Code
+  // Assignment Code
 var generateBtn = document.querySelector("#generate");
 
 function generatePassword() {
@@ -20,39 +20,24 @@ function generatePassword() {
 	const uppercase = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
 	const lowercase = "abcdefghijklmnopqrstuvwxyz";
 
-	// While loop to ensure a valid result.
-	while (password.length < 8 || password.length > 128)
-		password.length = prompt("What length would you like your password?", 8);
-
-	// Special character confirmation.
-	choice = confirm("Would you like it to include special characters?");
-	if (choice) {
+	password.length = document.getElementById("length").value;
+	if (document.getElementById("special").checked)
 		password.chars += special;
-	}
-
-	// Numerical character confirmation.
-	choice = confirm("Would you like it to include numbers?");
-	if (choice) {
+	if (document.getElementById("numbers").checked)
 		password.chars += numbers;
-	}
-
-	// Uppercase character confirmation.
-	choice = confirm("Would you like it to capital letters?");
-	if (choice) {
+	if (document.getElementById("uppercase").checked)
 		password.chars += uppercase;
-	}
-
-	// Lowercase character confirmation.
-	choice = confirm("Would you like it to include lowercase?");
-	if (choice) {
+	if (document.getElementById("lowercase").checked)
 		password.chars += lowercase;
-	}
 
 	// Error if no available characters. Includes early return statement.
 	if (password.chars.length === 0) {
 		alert("Your password does not have any available characters!\n\nFallback to admin password.");
 		return "password";
 	}
+
+	if (password.length === 0)
+		return "password";
 
 	// Generate password by randomly selecting from available list of chars.
 	for (let i = 0; i < password.length; i++) {
@@ -64,12 +49,25 @@ function generatePassword() {
 }
 
 // Write password to the #password input
+let doOnce = true;
 function writePassword() {
-  var password = generatePassword();
-  var passwordText = document.querySelector("#password");
+  if (doOnce) {
+	doOnce = false;
+	let form = document.getElementsByTagName("form")[0];
 
-  passwordText.value = password;
+	form.style.opacity = "1.0";
+	form.style.height = "400px";
+	for(var i = 0; i < form.children.length; i++){
+		form.children[i].style.display = "block";
+	}
 
+	document.querySelector("#generate").innerText = "Generate Password";
+  } else {
+	var password = generatePassword();
+	var passwordText = document.querySelector("#password");
+
+	passwordText.value = password;
+  }
 }
 
 // Add event listener to generate button
