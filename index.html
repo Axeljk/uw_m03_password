@@ -17,21 +17,22 @@
           <h2>Generate a Password</h2>
         </div>
 		<form>
-			<label for="length">How long would you like the password? </label>
-			<input type="number" id="length" name="length" value="8" min="8" max="128" pattern="[0-9]*" required>
-			<label for="special">Should it include special characters?</label>
+			<label for="length">Password length (8-128)? </label>
+			<input type="number" id="length" name="length" value="8" min="8" max="128" maxlength="3" pattern="[0-9]*" required>
+			<label for="special">Include special characters?</label>
 			<label for="special" class="switch"><input type="checkbox" id="special" name="special" required><span></span></label>
-			<label for="numbers">Should it include numbers?</label>
+			<label for="numbers">Include numbers?</label>
 			<label for="numbers" class="switch"><input type="checkbox" id="numbers" name="numbers" required><span></span></label>
-			<label for="uppercase">Should it include capital letters?</label>
+			<label for="uppercase">Include capital letters?</label>
 			<label for="uppercase" class="switch"><input type="checkbox" id="uppercase" name="uppercase" required><span></span></label>
-			<label for="lowercase">Should it include lowercase characters?</label>
-			<label for="lowercase" class="switch"><input type="checkbox" id="lowercase" name="lowercase" required><span></span></label>
+			<label for="lowercase">Lowercase characters?</label>
+			<label for="lowercase" class="switch"><input type="checkbox" id="lowercase" name="lowercase" required checked><span></span></label>
 		</form>
         <div class="card-body">
           <textarea
             readonly
             id="password"
+			onClick="this.select(); navigator.clipboard.writeText(this.value);"
             placeholder="Your Secure Password"
             aria-label="Generated Password"
           ></textarea>
