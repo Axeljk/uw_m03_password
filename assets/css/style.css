@@ -50,30 +50,81 @@ header {
   height: 2px;
 }
 
+/*
+	Form section:
+ */
 form {
 	padding: 0;
 	opacity: 0.0;
 	height: 0px;
 	transition: height 0.8s, opacity 1s 0.6s;
-	display: grid;
-	grid-gap: 1em 4em;
-	grid-template-columns: 70% 20%;
-}
-form > div {
-	display: none;
 }
 label {
+	float: left;
+	display: none;
+	clear:left;
 	text-align: right;
-	padding: 0 2em;
+	width: 60%;
+	margin: 0.5em;
 }
-input {
-	margin: 1em 0;
+input[type=number] {
+	display: none;
+	float: right;
 	text-align: right;
-	height: 2em;
+	margin: 5px;
+	margin-right: 4em;
+	vertical-align:middle;
 	width: 4em;
 }
 input:invalid {
-	background-color: #f00;
+	background-color: #ff000066;
+}
+
+/*
+	Form switches:
+ */
+.switch {
+	cursor: pointer;
+	position: relative;
+	float: right;
+	clear: right;
+	display: none;
+	width: 36px;
+	height: 20px;
+	margin-right: 3em;
+}
+.switch input {
+	opacity: 0;
+	width: 0;
+	height: 0;
+}
+.switch span {
+	display: inherit;
+	position: absolute;
+	transition: .4s;
+	background: #aaa;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	top: 0;
+}
+.switch span:before {
+	cursor: pointer;
+	position: absolute;
+	content: "";
+	height: 16px;
+	width: 16px;
+	left: 2px;
+	bottom: 2px;
+	background-color: #ddd;
+	transition: .4s;
+}
+input:checked + span {
+	background: #29f;
+}
+input:checked + span:before {
+	transform: translateX(16px);
+	background: #fff;
 }
 
 .card-body {

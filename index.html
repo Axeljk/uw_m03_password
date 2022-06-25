@@ -20,13 +20,13 @@
 			<label for="length">How long would you like the password? </label>
 			<input type="number" id="length" name="length" value="8" min="8" max="128" pattern="[0-9]*" required>
 			<label for="special">Should it include special characters?</label>
-			<input type="checkbox" id="special" name="special" required>
+			<label for="special" class="switch"><input type="checkbox" id="special" name="special" required><span></span></label>
 			<label for="numbers">Should it include numbers?</label>
-			<input type="checkbox" id="numbers" name="numbers" required>
+			<label for="numbers" class="switch"><input type="checkbox" id="numbers" name="numbers" required><span></span></label>
 			<label for="uppercase">Should it include capital letters?</label>
-			<input type="checkbox" id="uppercase" name="uppercase" required>
+			<label for="uppercase" class="switch"><input type="checkbox" id="uppercase" name="uppercase" required><span></span></label>
 			<label for="lowercase">Should it include lowercase characters?</label>
-			<input type="checkbox" id="lowercase" name="lowercase" required>
+			<label for="lowercase" class="switch"><input type="checkbox" id="lowercase" name="lowercase" required><span></span></label>
 		</form>
         <div class="card-body">
           <textarea

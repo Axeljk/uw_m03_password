@@ -56,12 +56,9 @@ function writePassword() {
 	let form = document.getElementsByTagName("form")[0];
 
 	form.style.opacity = "1.0";
-	form.style.height = "400px";
-	for(var i = 0; i < form.children.length; i++){
-		form.children[i].style.display = "block";
-	}
+	form.style.height = "220px";
 
-	document.querySelector("#generate").innerText = "Generate Password";
+	myFunction();
   } else {
 	var password = generatePassword();
 	var passwordText = document.querySelector("#password");
@@ -72,3 +69,26 @@ function writePassword() {
 
 // Add event listener to generate button
 generateBtn.addEventListener("click", writePassword);
+document.querySelector("#length").addEventListener("input", myFunction);
+document.querySelector("form").addEventListener("transitionend", displayForm);
+
+function myFunction() {
+	let inputText = document.querySelector("#length");
+
+	if (inputText.checkValidity()) {
+		generateBtn.textContent = "Generate Password";
+		generateBtn.setAttribute("style", "background-color: hsl(133, 91%, 60%);");
+	} else {
+		generateBtn.textContent = "Complete Form";
+		generateBtn.setAttribute("style", "background-color: hsl(360, 91%, 36%);");
+	}
+}
+function displayForm() {
+	let form = document.querySelector("form");
+
+	form.style.padding = "1em 0";
+	for(var i = 0; i < form.children.length; i++){
+		form.children[i].style.display = "inline-block";
+	}
+
+}
