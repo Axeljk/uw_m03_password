@@ -16,7 +16,7 @@ Generates a password to the user's specifications. The password may be 8 to 128 
 
 Visit [this link](https://axeljk.github.io/uw_m03_password) to view the page.
 
-![Screenshot](assets/img/screenshot.jp)
+![Screenshot](assets/img/screenshot.jpg)
 
 ## Credits
 
