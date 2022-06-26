@@ -66,7 +66,6 @@ function writePassword() {
 	doOnce = false;
 	let form = document.querySelector("form");
 
-	form.style.opacity = "1.0";
 	form.style.height = "220px";
 
 	btnState();
@@ -79,6 +78,12 @@ function writePassword() {
 }
 
 // Add event listeners.
+/*
+	#length, #special, #numbers, #uppercase, and #lowercase are input in the form.
+	form listener triggers the appearance of its contents.
+	.card-body's span gets disabled after it has outlived it's use.
+
+ */
 generateBtn.addEventListener("click", writePassword);
 document.querySelector("#length").addEventListener("input", btnState);
 document.querySelector("#special").addEventListener("input", checkSwitch);
@@ -86,7 +91,12 @@ document.querySelector("#numbers").addEventListener("input", checkSwitch);
 document.querySelector("#uppercase").addEventListener("input", checkSwitch);
 document.querySelector("#lowercase").addEventListener("input", checkSwitch);
 document.querySelector("form").addEventListener("transitionend", displayForm);
+document.querySelector(".card-body span").addEventListener("transitionend", disable);
 
+/*
+	This function checks the state of the form (valid or not), and changes the
+		button's style if it has changed.
+ */
 function btnState() {
 	let inputText = document.querySelector("#length");
 
@@ -100,15 +110,23 @@ function btnState() {
 		generateBtn.setAttribute("style", "background-color: hsl(360, 91%, 36%);");
 	}
 }
+/*
+	displayForm adjusts the form's style to hold content, then makes that
+		content appear child by child.
+ */
 function displayForm() {
 	let form = document.querySelector("form");
 
+	form.style.opacity = "1";
 	form.style.padding = "1em 0";
 	for(var i = 0; i < form.children.length; i++){
 		form.children[i].style.display = "inline-block";
 		form.children[i].style.opacity = "1.0";
 	}
 }
+/*
+	When a switch is hit, this updates the tally number of how many are "on".
+ */
 function checkSwitch() {
 	if (this.checkValidity())
 		password.switches++;
@@ -116,4 +134,31 @@ function checkSwitch() {
 		password.switches--;
 
 	btnState();
+}
+/*
+	disable changes the display property of the element to "" (none) and resets
+		the opacity of it. Any selection in the window is deselected.
+	This is called automatically when the "Copied to clipboard." popup fades out.
+ */
+function disable() {
+	this.setAttribute("style", "display: ; opacity: 1;");
+	window.getSelection().removeAllRanges();
+}
+/*
+	copyText is called by the textarea (onClick) in the HTML file. Selects the
+		text in it (if any) and copies that to the clipboard for the user. If
+		the "Copied to clipboard." popup isn't visible, make it. Then set a
+		timer to make it disappear after a moment.
+		- Also, "display: none" in CSS appears as an empty value (""). Annoying.
+ */
+function copyText(e) {
+	if (e.value !== "") {
+		e.select();
+		navigator.clipboard.writeText(e.value);
+
+		if (document.querySelector(".card-body span").style.display === "") {
+			document.querySelector(".card-body span").setAttribute("style", "display:inline-block;");
+			setTimeout("document.querySelector(\".card-body span\").style.opacity = 0", 600);
+		}
+	}
 }

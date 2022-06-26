@@ -32,10 +32,11 @@
           <textarea
             readonly
             id="password"
-			onClick="this.select(); navigator.clipboard.writeText(this.value);"
+			onClick="copyText(this)"
             placeholder="Your Secure Password"
             aria-label="Generated Password"
           ></textarea>
+		  <span>Copied to clipboard.</span>
         </div>
         <div class="card-footer">
           <button id="generate" class="btn">Specify Password</button>
